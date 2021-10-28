@@ -79,14 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
               _counter < 0 ||
                       _counter > listachistosa.length - 1 ||
                       listachistosa[_counter].isEmpty
-                  ? 'You have pushed the button this many times:'
+                  ? 'Has precionado el boton este numero de veces:'
                   : listachistosa[_counter],
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextFormField(),
           ],
         ),
       ),
