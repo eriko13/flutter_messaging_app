@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,6 +32,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  List<String> listachistosa = [
+    '',
+    '',
+    '',
+    '',
+    '',
+    'Por el culo te la inco',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'Entre más me la mamas más me crece',
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -47,8 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              _counter > listachistosa.length - 1 ||
+                      listachistosa[_counter].isEmpty
+                  ? 'You have pushed the button this many times:'
+                  : listachistosa[_counter],
             ),
             Text(
               '$_counter',
