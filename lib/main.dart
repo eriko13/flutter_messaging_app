@@ -56,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decreaseCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              _counter > listachistosa.length - 1 ||
+              _counter < 0 ||
+                      _counter > listachistosa.length - 1 ||
                       listachistosa[_counter].isEmpty
                   ? 'You have pushed the button this many times:'
                   : listachistosa[_counter],
@@ -79,13 +86,30 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextFormField(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Incrementar',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: FloatingActionButton(
+              onPressed: _decreaseCounter,
+              tooltip: 'Restar',
+              child: const Icon(Icons.remove),
+            ),
+          ),
+        ],
       ),
     );
   }
