@@ -56,10 +56,56 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _decreaseCounter() {
+  void _decreaseCounter() async {
     setState(() {
       _counter--;
     });
+  }
+
+  void _showInputField() async {
+    TextEditingController chisteController = TextEditingController();
+    String? respuesta = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 200,
+        child: SimpleDialog(title: Text('Agrega un chiste: '),
+            // actions: [
+            //   TextButton(
+            //     onPressed: () =>
+            //         Navigator.of(context).pop<String>(chisteController.text),
+            //     child: Text('f'),
+            //   ),
+            // ],
+
+            children: [
+              Center(
+                child: SizedBox(
+                  width: 300,
+                  height: 200,
+                  child: TextFormField(
+                    controller: chisteController,
+                    decoration: InputDecoration(
+                      fillColor: Colors.grey[700],
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              TextButton(
+                ,
+                onPressed: () =>
+                    Navigator.of(context).pop<String>(chisteController.text),
+                child: Text('f'),
+              ),
+            ]),
+      ),
+    );
+
+    print(respuesta);
   }
 
   @override
@@ -86,13 +132,20 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextFormField(),
           ],
         ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: FloatingActionButton(
+              onPressed: _showInputField,
+              tooltip: 'Agregar chiste',
+              child: const Icon(Icons.add_comment),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(5),
             child: FloatingActionButton(
